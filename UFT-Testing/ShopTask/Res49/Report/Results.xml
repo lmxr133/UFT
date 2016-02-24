@@ -1,0 +1,309 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="12.02" os="Windows 7" host="LM-PC"><DocLocation><![CDATA[E:\UFT-Testing\ShopTask]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[ShopTask]]></DName>
+<Res><![CDATA[Res49]]></Res>
+<RunType fmStep="True" /><DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<Action rID="T3">
+<AName><![CDATA[Action2]]></AName>
+<Step rID="T4">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:31]]></Time>
+<TimeTick>1453258771</TimeTick>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:31]]></Time>
+<TimeTick>1453258771</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[countryIso.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["中国"]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:31]]></Time>
+<TimeTick>1453258771</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="11" Source="Action2" SourceLine="0" >
+<Disp><![CDATA[countryIso.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[regionIso]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识 regionIso 对象的指定项。请确认指定项包含在对象的项集合中。]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:31]]></Time>
+<TimeTick>1453258771</TimeTick>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[regionIso]]></Obj>
+<Details plainTxt="False" ><![CDATA[对象的物理描述:<br>Mercury Class = WebList<br>Html Tag = SELECT<br>_xpath = //SELECT[@id="address.region"]<br>|Visible Items = 0<br>Visible = -1<br>Name = regionIso<br>Items Count = 35<br>Html Id = address.region<br>default value = 请选择<br>DHTML Class = <br>]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:31]]></Time>
+<TimeTick>1453258771</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="15" status="Warning" nType="描述" Source="Action2" SourceLine="1" >
+<Disp><![CDATA[regionIso]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="14" status="Failed" nType="运行错误" Source="Action2" SourceLine="1" >
+<Disp><![CDATA[regionIso]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="10" status="Failed" Source="Action2" SourceLine="0" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="9" status="Failed" Source="Action2" SourceLine="0" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[运行错误]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识 regionIso 对象的指定项。请确认指定项包含在对象的项集合中。<BR>第 (2) 行: &quot;Browser(&quot;数字本草&quot;).Page(&quot;数字本草&quot;).WebList(&quot;regionIso&quot;).Select &quot;天津&quot;&quot;。 ]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:31]]></Time>
+<TimeTick>1453258771</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="16" status="Failed" Source="Action2" SourceLine="1" >
+<Disp><![CDATA[运行错误]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:39]]></Time>
+<TimeTick>1453258779</TimeTick>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:39]]></Time>
+<TimeTick>1453258779</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[cityCode]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识 cityCode 对象的指定项。请确认指定项包含在对象的项集合中。]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:39]]></Time>
+<TimeTick>1453258779</TimeTick>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[cityCode]]></Obj>
+<Details plainTxt="False" ><![CDATA[对象的物理描述:<br>Mercury Class = WebList<br>Html Tag = SELECT<br>_xpath = //SELECT[@id="address.city"]<br>|Visible Items = 0<br>Visible = -1<br>Name = cityCode<br>Items Count = 2<br>Html Id = address.city<br>default value = 请选择<br>DHTML Class = <br>]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:39]]></Time>
+<TimeTick>1453258779</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="22" status="Warning" nType="描述" Source="Action2" SourceLine="1" >
+<Disp><![CDATA[cityCode]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="21" status="Failed" nType="运行错误" Source="Action2" SourceLine="1" >
+<Disp><![CDATA[cityCode]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="20" status="Failed" Source="Action2" SourceLine="1" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="19" status="Failed" Source="Action2" SourceLine="1" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[运行错误]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识 cityCode 对象的指定项。请确认指定项包含在对象的项集合中。<BR>第 (3) 行: &quot;Browser(&quot;数字本草&quot;).Page(&quot;数字本草&quot;).WebList(&quot;cityCode&quot;).Select &quot;天津&quot;&quot;。 ]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:39]]></Time>
+<TimeTick>1453258779</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="23" status="Failed" Source="Action2" SourceLine="2" >
+<Disp><![CDATA[运行错误]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:47]]></Time>
+<TimeTick>1453258787</TimeTick>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:47]]></Time>
+<TimeTick>1453258787</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[cityDistrictCode]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识 cityDistrictCode 对象的指定项。请确认指定项包含在对象的项集合中。]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:47]]></Time>
+<TimeTick>1453258787</TimeTick>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[cityDistrictCode]]></Obj>
+<Details plainTxt="False" ><![CDATA[对象的物理描述:<br>Mercury Class = WebList<br>Html Tag = SELECT<br>_xpath = //SELECT[@id="address.citydistrict"]<br>|Visible Items = 0<br>Visible = -1<br>Name = cityDistrictCode<br>Items Count = 17<br>Html Id = address.citydistrict<br>default value = 请选择<br>DHTML Class = <br>]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:47]]></Time>
+<TimeTick>1453258787</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="29" status="Warning" nType="描述" Source="Action2" SourceLine="2" >
+<Disp><![CDATA[cityDistrictCode]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="6" nRep="28" status="Failed" nType="运行错误" Source="Action2" SourceLine="2" >
+<Disp><![CDATA[cityDistrictCode]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="27" status="Failed" Source="Action2" SourceLine="2" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="26" status="Failed" Source="Action2" SourceLine="2" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[运行错误]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识 cityDistrictCode 对象的指定项。请确认指定项包含在对象的项集合中。<BR>第 (4) 行: &quot;Browser(&quot;数字本草&quot;).Page(&quot;数字本草&quot;).WebList(&quot;cityDistrictCode&quot;).Select &quot;津南&quot;&quot;。 ]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:47]]></Time>
+<TimeTick>1453258787</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="30" status="Failed" Source="Action2" SourceLine="3" >
+<Disp><![CDATA[运行错误]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[停止运行]]></Obj>
+<Details plainTxt="False" ><![CDATA[用户停止运行。]]></Details>
+<Time><![CDATA[2016/1/20 - 10:59:53]]></Time>
+<TimeTick>1453258793</TimeTick>
+<NodeArgs eType="General" icon="8" nRep="31" >
+<Disp><![CDATA[停止运行]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/20 - 10:59:30" eTime="2016/1/20 - 10:59:53" passed="0" failed="6" warnings="3" ></Summary>
+<NodeArgs eType="StartAction" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[Action2 摘要]]></Disp>
+</NodeArgs>
+</Action>
+<Summary sTime="2016/1/20 - 10:59:30" eTime="2016/1/20 - 10:59:53" passed="0" failed="6" warnings="3" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[测试 ShopTask 摘要]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

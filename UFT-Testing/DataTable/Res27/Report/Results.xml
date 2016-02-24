@@ -1,0 +1,457 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="12.02" os="Windows 7" host="LM-PC"><DocLocation><![CDATA[E:\UFT-Testing\DataTable]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[DataTable]]></DName>
+<Res><![CDATA[Res27]]></Res>
+<RunType fmStep="True" /><DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<Action rID="T3">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T4">
+<Obj plainTxt="False" ><![CDATA[SystemUtil]]></Obj>
+<Details plainTxt="False" ><![CDATA[SystemUtil]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:15]]></Time>
+<TimeTick>1453104615</TimeTick>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[运行 "www.baidu.com",1]]></Obj>
+<Details plainTxt="False" ><![CDATA[运行 "www.baidu.com",1]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:15]]></Time>
+<TimeTick>1453104615</TimeTick>
+<NodeArgs eType="Replay" icon="4" nRep="10" status="Passed" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[运行 "www.baidu.com",1]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="4" nRep="9" status="Passed" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[SystemUtil]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[百度一下，你就知道]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:26]]></Time>
+<TimeTick>1453104626</TimeTick>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA["百度一下，你就知道"  - 智能标识]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">已调用智能标识机制。</span></P><P><SPAN class=text>原因: 对象不唯一(已找到 5 个对象)</SPAN></P>           <SPAN class=text><b>原始描述:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>智能标识可选描述:</B></SPAN></FONT></P><FONT face=Verdana size=2><u>基本筛选属性(已找到 5 个对象) &nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>可选筛选属性</FONT></u><br>
+name=百度一下，你就知道<SPAN class=passed>(已使用</SPAN>，1 个匹配)</SPAN><br>title=百度一下，你就知道<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>openurl=http://www.duba.com/?f=qd_chedh&ft=gjlock<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>opentitle=毒霸网址大全 - 最安全实用的网址导航<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=0<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:26]]></Time>
+<TimeTick>1453104626</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="13" Source="Action1" SourceLine="4" >
+<Disp><![CDATA["百度一下，你就知道"  - 智能标识]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[百度一下，你就知道]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:27]]></Time>
+<TimeTick>1453104627</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[wd.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["QTP自动化测试技术导航"]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:27]]></Time>
+<TimeTick>1453104627</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="16" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[wd.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[百度一下.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:32]]></Time>
+<TimeTick>1453104632</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="19" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[百度一下.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="15" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[百度一下，你就知道]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[QTP测试技术导航_百度搜索]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:37]]></Time>
+<TimeTick>1453104637</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[到百度首页.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:37]]></Time>
+<TimeTick>1453104637</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="23" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[到百度首页.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="22" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[QTP测试技术导航_百度搜索]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[百度一下，你就知道]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:48]]></Time>
+<TimeTick>1453104648</TimeTick>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[wd.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["QTP自动化测试技术导航"]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:48]]></Time>
+<TimeTick>1453104648</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="27" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[wd.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[百度一下.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:53]]></Time>
+<TimeTick>1453104653</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="30" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[百度一下.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="26" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[百度一下，你就知道]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[QTP测试技术导航_百度搜索]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:58]]></Time>
+<TimeTick>1453104658</TimeTick>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[到百度首页.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:10:58]]></Time>
+<TimeTick>1453104658</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="34" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[到百度首页.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="33" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[QTP测试技术导航_百度搜索]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[百度一下，你就知道]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:09]]></Time>
+<TimeTick>1453104669</TimeTick>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[wd.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["QTP自动化测试技术导航"]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:09]]></Time>
+<TimeTick>1453104669</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="38" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[wd.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[百度一下.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:14]]></Time>
+<TimeTick>1453104674</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="41" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[百度一下.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="37" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[百度一下，你就知道]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[QTP测试技术导航_百度搜索]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:20]]></Time>
+<TimeTick>1453104680</TimeTick>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[到百度首页.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:20]]></Time>
+<TimeTick>1453104680</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="45" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[到百度首页.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="44" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[QTP测试技术导航_百度搜索]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[百度一下，你就知道]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:31]]></Time>
+<TimeTick>1453104691</TimeTick>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[wd.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["QTP自动化测试技术导航"]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:31]]></Time>
+<TimeTick>1453104691</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="49" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[wd.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[百度一下.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:36]]></Time>
+<TimeTick>1453104696</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="52" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[百度一下.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="48" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[百度一下，你就知道]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[QTP测试技术导航_百度搜索]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:41]]></Time>
+<TimeTick>1453104701</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[到百度首页.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:41]]></Time>
+<TimeTick>1453104701</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="56" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[到百度首页.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="55" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[QTP测试技术导航_百度搜索]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[百度一下，你就知道]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:52]]></Time>
+<TimeTick>1453104712</TimeTick>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[wd.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["QTP自动化测试技术导航"]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:52]]></Time>
+<TimeTick>1453104712</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="60" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[wd.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[百度一下.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:11:57]]></Time>
+<TimeTick>1453104717</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="63" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[百度一下.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="59" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[百度一下，你就知道]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[QTP测试技术导航_百度搜索]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/18 - 16:12:06]]></Time>
+<TimeTick>1453104726</TimeTick>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA["到百度首页"  - 描述不匹配]]></Obj>
+<Details plainTxt="False" ><![CDATA[使用测试对象描述找不到对象。请检查对象的属性。]]></Details>
+<Time><![CDATA[2016/1/18 - 16:12:06]]></Time>
+<TimeTick>1453104726</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="72" status="Warning" Source="Action1" SourceLine="7" >
+<Disp><![CDATA["到百度首页"  - 描述不匹配]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA["到百度首页"  - 智能标识]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">已调用智能标识机制。</span></P><P><SPAN class=text>原因: 找不到对象</SPAN></P>           <SPAN class=text><b>原始描述:</b></SPAN><br>micclass=Image<br>image type=Image Link<br>html tag=IMG<br>alt=到百度首页<br><P><FONT face=Verdana size=2><SPAN class=text><B>智能标识可选描述:</B></SPAN></FONT></P><FONT face=Verdana size=2><u>基本筛选属性(已找到 22 个对象) &nbsp;</FONT></u><br>
+micclass=Image<br>html tag=IMG<br><br><FONT face=Verdana size=2><u>可选筛选属性</FONT></u><br>
+alt=到百度首页<SPAN class=Failed>(已跳过)</SPAN><br>image type=Image Link<SPAN class=passed>(已使用</SPAN>，1 个匹配)</SPAN><br>html id=<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>name=Image<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>file name=baidu_jgylogo3.gif<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>class=<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>visible=-1<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>width=101<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>height=33<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[2016/1/18 - 16:12:06]]></Time>
+<TimeTick>1453104726</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="73" Source="Action1" SourceLine="7" >
+<Disp><![CDATA["到百度首页"  - 智能标识]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[到百度首页.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/18 - 16:12:06]]></Time>
+<TimeTick>1453104726</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="74" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[到百度首页.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[停止运行]]></Obj>
+<Details plainTxt="False" ><![CDATA[用户停止运行。]]></Details>
+<Time><![CDATA[2016/1/18 - 16:12:06]]></Time>
+<TimeTick>1453104726</TimeTick>
+<NodeArgs eType="General" icon="11" nRep="75" >
+<Disp><![CDATA[停止运行]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="71" status="Warning" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[QTP测试技术导航_百度搜索]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="12" status="Warning" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[百度一下，你就知道]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/18 - 16:10:10" eTime="2016/1/18 - 16:12:06" passed="1" failed="0" warnings="1" ></Summary>
+<NodeArgs eType="StartAction" icon="3" nRep="6" status="Warning" >
+<Disp><![CDATA[Action1 摘要]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[停止运行]]></Obj>
+<Details plainTxt="False" ><![CDATA[用户停止运行。]]></Details>
+<Time><![CDATA[2016/1/18 - 16:12:06]]></Time>
+<TimeTick>1453104726</TimeTick>
+<NodeArgs eType="General" icon="12" nRep="77" >
+<Disp><![CDATA[停止运行]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/18 - 16:10:09" eTime="2016/1/18 - 16:12:06" passed="1" failed="0" warnings="1" stopped="True" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Warning" >
+<Disp><![CDATA[测试 DataTable 摘要]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

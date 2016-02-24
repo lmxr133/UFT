@@ -1,0 +1,372 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="12.02" os="Windows 7" host="LM-PC"><DocLocation><![CDATA[E:\UFT-Testing\ShopTask]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[ShopTask]]></DName>
+<Res><![CDATA[Res64]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<Action rID="T3">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T4">
+<Obj plainTxt="False" ><![CDATA[会员登录]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:28]]></Time>
+<TimeTick>1453383508</TimeTick>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:28]]></Time>
+<TimeTick>1453383508</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[[登录].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:28]]></Time>
+<TimeTick>1453383508</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="11" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[[登录].Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="10" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[数字本草 | 主页]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[会员登录]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:30]]></Time>
+<TimeTick>1453383510</TimeTick>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[j_username1.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["自动化3"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:30]]></Time>
+<TimeTick>1453383510</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="15" Source="Action1" SourceLine="10" >
+<Disp><![CDATA[j_username1.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[j_password.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["123456"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:31]]></Time>
+<TimeTick>1453383511</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="17" Source="Action1" SourceLine="11" >
+<Disp><![CDATA[j_password.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[登录.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:32]]></Time>
+<TimeTick>1453383512</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="19" Source="Action1" SourceLine="12" >
+<Disp><![CDATA[登录.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="14" Source="Action1" SourceLine="10" >
+<Disp><![CDATA[会员登录]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:34]]></Time>
+<TimeTick>1453383514</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[卖家中心.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:34]]></Time>
+<TimeTick>1453383514</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="23" Source="Action1" SourceLine="15" >
+<Disp><![CDATA[卖家中心.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="22" Source="Action1" SourceLine="15" >
+<Disp><![CDATA[数字本草 | 主页]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:36]]></Time>
+<TimeTick>1453383516</TimeTick>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[基础信息.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:36]]></Time>
+<TimeTick>1453383516</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="27" Source="Action1" SourceLine="21" >
+<Disp><![CDATA[基础信息.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[name.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["1木木听雨"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:38]]></Time>
+<TimeTick>1453383518</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="29" Source="Action1" SourceLine="22" >
+<Disp><![CDATA[name.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[description.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["欢迎光临"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:39]]></Time>
+<TimeTick>1453383519</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="31" Source="Action1" SourceLine="23" >
+<Disp><![CDATA[description.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[contactName1.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["张四"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:40]]></Time>
+<TimeTick>1453383520</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="33" Source="Action1" SourceLine="24" >
+<Disp><![CDATA[contactName1.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[contactPhone1.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["15387985652"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:41]]></Time>
+<TimeTick>1453383521</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="35" Source="Action1" SourceLine="25" >
+<Disp><![CDATA[contactPhone1.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[contactName2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA[""]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:42]]></Time>
+<TimeTick>1453383522</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="37" Source="Action1" SourceLine="27" >
+<Disp><![CDATA[contactName2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[contactPhone2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA[""]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:43]]></Time>
+<TimeTick>1453383523</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="39" Source="Action1" SourceLine="28" >
+<Disp><![CDATA[contactPhone2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[contactName3.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA[""]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:44]]></Time>
+<TimeTick>1453383524</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="41" Source="Action1" SourceLine="29" >
+<Disp><![CDATA[contactName3.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[contactPhone3.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA[""]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:45]]></Time>
+<TimeTick>1453383525</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="43" Source="Action1" SourceLine="30" >
+<Disp><![CDATA[contactPhone3.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[telephone.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["022-27463085"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:46]]></Time>
+<TimeTick>1453383526</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="45" Source="Action1" SourceLine="31" >
+<Disp><![CDATA[telephone.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[fax.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["27463085"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:47]]></Time>
+<TimeTick>1453383527</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="47" Source="Action1" SourceLine="32" >
+<Disp><![CDATA[fax.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[qq.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["706031494"]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:50]]></Time>
+<TimeTick>1453383530</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="49" Source="Action1" SourceLine="33" >
+<Disp><![CDATA[qq.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[停止运行]]></Obj>
+<Details plainTxt="False" ><![CDATA[用户停止运行。]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:50]]></Time>
+<TimeTick>1453383530</TimeTick>
+<NodeArgs eType="General" icon="9" nRep="50" >
+<Disp><![CDATA[停止运行]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="26" Source="Action1" SourceLine="21" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="9" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[会员登录]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/21 - 21:38:23" eTime="2016/1/21 - 21:38:50" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="3" nRep="6" >
+<Disp><![CDATA[Action1 摘要]]></Disp>
+</NodeArgs>
+</Action>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[停止运行]]></Obj>
+<Details plainTxt="False" ><![CDATA[用户停止运行。]]></Details>
+<Time><![CDATA[2016/1/21 - 21:38:50]]></Time>
+<TimeTick>1453383530</TimeTick>
+<NodeArgs eType="General" icon="10" nRep="52" >
+<Disp><![CDATA[停止运行]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/21 - 21:38:19" eTime="2016/1/21 - 21:38:50" passed="0" failed="0" warnings="0" stopped="True" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" >
+<Disp><![CDATA[测试 ShopTask 摘要]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>

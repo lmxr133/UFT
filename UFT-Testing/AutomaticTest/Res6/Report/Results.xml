@@ -1,0 +1,764 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="中国标准时间">
+<General productName="HP Unified Functional Testing" productVer="12.02" os="Windows 7" host="LM-PC"><DocLocation><![CDATA[E:\UFT-Testing\AutomaticTest]]></DocLocation></General>
+<Doc rID="T1"   productName= "HP Unified Functional Testing"  >
+<DName><![CDATA[AutomaticTest]]></DName>
+<Res><![CDATA[Res6]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Action rID="T4">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:31]]></Time>
+<TimeTick>1452865171</TimeTick>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA["数字本草 | 主页"  - 智能标识]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">已调用智能标识机制。</span></P><P><SPAN class=text>原因: 对象不唯一(已找到 2 个对象)</SPAN></P>           <SPAN class=text><b>原始描述:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>智能标识可选描述:</B></SPAN></FONT></P><FONT face=Verdana size=2><u>基本筛选属性(已找到 2 个对象) &nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>可选筛选属性</FONT></u><br>
+name=数字本草 | 主页<SPAN class=passed>(已使用</SPAN>，1 个匹配)</SPAN><br>title=数字本草 | 主页<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>openurl=https://123.150.11.173<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>opentitle=数字本草 | 主页<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:31]]></Time>
+<TimeTick>1452865171</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="10" Source="Action1" SourceLine="0" >
+<Disp><![CDATA["数字本草 | 主页"  - 智能标识]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T7">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:31]]></Time>
+<TimeTick>1452865171</TimeTick>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[[注册].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:31]]></Time>
+<TimeTick>1452865171</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="13" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[[注册].Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="12" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[数字本草 | 主页]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[注册]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:36]]></Time>
+<TimeTick>1452865176</TimeTick>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[马上注册.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:36]]></Time>
+<TimeTick>1452865176</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="17" Source="Action1" SourceLine="1" >
+<Disp><![CDATA[马上注册.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="16" Source="Action1" SourceLine="1" >
+<Disp><![CDATA[注册]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[个人注册信息完善]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:48]]></Time>
+<TimeTick>1452865188</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[userId.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["2自动化测试"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:48]]></Time>
+<TimeTick>1452865188</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="21" Source="Action1" SourceLine="3" >
+<Disp><![CDATA[userId.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[pwd.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5698a5e3afe68531f54a94fbfdf2967fecf2"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:39:55]]></Time>
+<TimeTick>1452865195</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="23" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[pwd.SetSecure]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[checkPwd.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5698a5e79490b60db7dcf06a0e384eec619f"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:02]]></Time>
+<TimeTick>1452865202</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="25" Source="Action1" SourceLine="5" >
+<Disp><![CDATA[checkPwd.SetSecure]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[mobileNumber.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["13524799692"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:09]]></Time>
+<TimeTick>1452865209</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="27" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[mobileNumber.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[captcha.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["1"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:16]]></Time>
+<TimeTick>1452865216</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="29" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[captcha.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[立即注册.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:21]]></Time>
+<TimeTick>1452865221</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="31" Source="Action1" SourceLine="8" >
+<Disp><![CDATA[立即注册.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="20" Source="Action1" SourceLine="3" >
+<Disp><![CDATA[个人注册信息完善]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[个人注册信息完善_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:26]]></Time>
+<TimeTick>1452865226</TimeTick>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[下次再说>>.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:26]]></Time>
+<TimeTick>1452865226</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="35" Source="Action1" SourceLine="10" >
+<Disp><![CDATA[下次再说>>.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="34" Source="Action1" SourceLine="10" >
+<Disp><![CDATA[个人注册信息完善_2]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[个人注册成功]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:31]]></Time>
+<TimeTick>1452865231</TimeTick>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[实名认证>>.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:31]]></Time>
+<TimeTick>1452865231</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="39" Source="Action1" SourceLine="11" >
+<Disp><![CDATA[实名认证>>.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="38" Source="Action1" SourceLine="11" >
+<Disp><![CDATA[个人注册成功]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[个人卖家实名认证]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:43]]></Time>
+<TimeTick>1452865243</TimeTick>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[idName.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["张三"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:43]]></Time>
+<TimeTick>1452865243</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="43" Source="Action1" SourceLine="13" >
+<Disp><![CDATA[idName.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[idCard.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["111111111111111111"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:50]]></Time>
+<TimeTick>1452865250</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="45" Source="Action1" SourceLine="14" >
+<Disp><![CDATA[idCard.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[提交认证.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:40:55]]></Time>
+<TimeTick>1452865255</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="47" Source="Action1" SourceLine="15" >
+<Disp><![CDATA[提交认证.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="42" Source="Action1" SourceLine="13" >
+<Disp><![CDATA[个人卖家实名认证]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[绑定银行卡]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:08]]></Time>
+<TimeTick>1452865268</TimeTick>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[paymentInfoDataList[0].bank.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["中国银行"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:08]]></Time>
+<TimeTick>1452865268</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="51" Source="Action1" SourceLine="18" >
+<Disp><![CDATA[paymentInfoDataList[0].bank.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[paymentInfoDataList[0].account.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["张三"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:15]]></Time>
+<TimeTick>1452865275</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="53" Source="Action1" SourceLine="19" >
+<Disp><![CDATA[paymentInfoDataList[0].account.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[paymentInfoDataList[0].account_2.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["1"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:21]]></Time>
+<TimeTick>1452865281</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="55" Source="Action1" SourceLine="20" >
+<Disp><![CDATA[paymentInfoDataList[0].account_2.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[保存.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:27]]></Time>
+<TimeTick>1452865287</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="57" Source="Action1" SourceLine="21" >
+<Disp><![CDATA[保存.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="50" Source="Action1" SourceLine="18" >
+<Disp><![CDATA[绑定银行卡]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[个人卖家认证完成]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:32]]></Time>
+<TimeTick>1452865292</TimeTick>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[开始设置交易账号.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:32]]></Time>
+<TimeTick>1452865292</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="61" Source="Action1" SourceLine="23" >
+<Disp><![CDATA[开始设置交易账号.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="60" Source="Action1" SourceLine="23" >
+<Disp><![CDATA[个人卖家认证完成]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[数字本草]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:37]]></Time>
+<TimeTick>1452865297</TimeTick>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[交易账户.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:37]]></Time>
+<TimeTick>1452865297</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="65" Source="Action1" SourceLine="24" >
+<Disp><![CDATA[交易账户.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="64" Source="Action1" SourceLine="24" >
+<Disp><![CDATA[数字本草]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[数字本草_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:47]]></Time>
+<TimeTick>1452865307</TimeTick>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[开始设置.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:47]]></Time>
+<TimeTick>1452865307</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="69" Source="Action1" SourceLine="26" >
+<Disp><![CDATA[开始设置.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[operPwd.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5698a7840b0b67b6"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:41:54]]></Time>
+<TimeTick>1452865314</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="71" Source="Action1" SourceLine="27" >
+<Disp><![CDATA[operPwd.SetSecure]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[operPwd1.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5698a78bb6f2e79d"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:42:01]]></Time>
+<TimeTick>1452865321</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="73" Source="Action1" SourceLine="28" >
+<Disp><![CDATA[operPwd1.SetSecure]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[立即开通.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:42:06]]></Time>
+<TimeTick>1452865326</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="75" Source="Action1" SourceLine="29" >
+<Disp><![CDATA[立即开通.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[基础信息.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:42:11]]></Time>
+<TimeTick>1452865331</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="77" Source="Action1" SourceLine="30" >
+<Disp><![CDATA[基础信息.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="68" Source="Action1" SourceLine="26" >
+<Disp><![CDATA[数字本草_2]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[数字本草_3]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:42:42]]></Time>
+<TimeTick>1452865362</TimeTick>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA["name"  - 描述不匹配]]></Obj>
+<Details plainTxt="False" ><![CDATA[使用测试对象描述找不到对象。请检查对象的属性。]]></Details>
+<Time><![CDATA[2016/1/15 - 21:42:42]]></Time>
+<TimeTick>1452865362</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="121" status="Warning" Source="Action1" SourceLine="33" >
+<Disp><![CDATA["name"  - 描述不匹配]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA["name"  - 智能标识]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">已调用智能标识机制。</span></P><P><SPAN class=text>原因: 找不到对象</SPAN></P>           <SPAN class=text><b>原始描述:</b></SPAN><br>type=text<br>name=name<br>micclass=WebEdit<br>html tag=INPUT<br><P><FONT face=Verdana size=2><SPAN class=text><B>智能标识可选描述:</B></SPAN></FONT></P><FONT face=Verdana size=2><u>基本筛选属性(已找到 2 个对象) &nbsp;</FONT></u><br>
+micclass=WebEdit<br>html tag=INPUT<br><br><FONT face=Verdana size=2><u>可选筛选属性</FONT></u><br>
+name=name<SPAN class=Failed>(已跳过)</SPAN><br>html id=name<SPAN class=Failed>(已跳过)</SPAN><br>max length=-1<SPAN class=Failed>(已跳过)</SPAN><br>default value=<SPAN class=passed>(已使用</SPAN>，2 个匹配)</SPAN><br>class=text form-control<SPAN class=Failed>(已跳过)</SPAN><br>rows=0<SPAN class=passed>(已使用</SPAN>，2 个匹配)</SPAN><br>visible=1<SPAN class=passed>(已使用</SPAN>，1 个匹配)</SPAN><br>]]></Details>
+<Time><![CDATA[2016/1/15 - 21:42:42]]></Time>
+<TimeTick>1452865362</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="122" Source="Action1" SourceLine="33" >
+<Disp><![CDATA["name"  - 智能标识]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[name.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["2"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:42:44]]></Time>
+<TimeTick>1452865364</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="123" Source="Action1" SourceLine="33" >
+<Disp><![CDATA[name.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[description]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识对象 "description" (属于类 WebEdit)。验证此对象的属性与当前显示在应用程序中的对象是否匹配。]]></Details>
+<Time><![CDATA[2016/1/15 - 21:43:10]]></Time>
+<TimeTick>1452865390</TimeTick>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[description]]></Obj>
+<Details plainTxt="False" ><![CDATA[对象的物理描述:<br>Type = textarea<br>Mercury Class = WebEdit<br>Html Tag = TEXTAREA<br>_xpath = //TEXTAREA[@id="description"]<br>|Visible = -1<br>rows = 2<br>Name = description<br>Max Length = -1<br>Html Id = description<br>default value = <br>DHTML Class = textarea des_position<br>]]></Details>
+<Time><![CDATA[2016/1/15 - 21:43:10]]></Time>
+<TimeTick>1452865390</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="167" status="Warning" nType="描述" Source="Action1" SourceLine="34" >
+<Disp><![CDATA[description]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="10" nRep="166" status="Failed" nType="运行错误" Source="Action1" SourceLine="34" >
+<Disp><![CDATA[description]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="120" status="Failed" Source="Action1" SourceLine="33" >
+<Disp><![CDATA[数字本草_3]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="9" status="Failed" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[数字本草 | 主页]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[运行错误]]></Obj>
+<Details plainTxt="False" ><![CDATA[无法标识对象 &quot;description&quot; (属于类 WebEdit)。验证此对象的属性与当前显示在应用程序中的对象是否匹配。<BR>第 (35) 行: &quot;.WebEdit(&quot;description&quot;).Set &quot;欢迎0&quot;&quot;。 ]]></Details>
+<Time><![CDATA[2016/1/15 - 21:43:10]]></Time>
+<TimeTick>1452865390</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="168" status="Failed" Source="Action1" SourceLine="34" >
+<Disp><![CDATA[运行错误]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/15 - 21:46:52]]></Time>
+<TimeTick>1452865612</TimeTick>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[数字本草_3]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:46:52]]></Time>
+<TimeTick>1452865612</TimeTick>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[description.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["欢迎0"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:46:52]]></Time>
+<TimeTick>1452865612</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="173" Source="Action1" SourceLine="34" >
+<Disp><![CDATA[description.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[contactName1.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["张三"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:46:59]]></Time>
+<TimeTick>1452865619</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="175" Source="Action1" SourceLine="35" >
+<Disp><![CDATA[contactName1.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[contactPhone1.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["13524799692"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:06]]></Time>
+<TimeTick>1452865626</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="177" Source="Action1" SourceLine="36" >
+<Disp><![CDATA[contactPhone1.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[countryIso.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["中国"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:11]]></Time>
+<TimeTick>1452865631</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="179" Source="Action1" SourceLine="37" >
+<Disp><![CDATA[countryIso.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[regionIso.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["山西"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:16]]></Time>
+<TimeTick>1452865636</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="181" Source="Action1" SourceLine="38" >
+<Disp><![CDATA[regionIso.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[cityCode.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["大同"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:21]]></Time>
+<TimeTick>1452865641</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="183" Source="Action1" SourceLine="39" >
+<Disp><![CDATA[cityCode.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[cityDistrictCode.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["新荣"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:26]]></Time>
+<TimeTick>1452865646</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="185" Source="Action1" SourceLine="40" >
+<Disp><![CDATA[cityDistrictCode.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA[street.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["迎水道1"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:33]]></Time>
+<TimeTick>1452865653</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="187" Source="Action1" SourceLine="41" >
+<Disp><![CDATA[street.Set]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="172" Source="Action1" SourceLine="34" >
+<Disp><![CDATA[数字本草_3]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页.Close]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:38]]></Time>
+<TimeTick>1452865658</TimeTick>
+<NodeArgs eType="Replay" icon="5" nRep="188" Source="Action1" SourceLine="43" >
+<Disp><![CDATA[数字本草 | 主页.Close]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="171" Source="Action1" SourceLine="34" >
+<Disp><![CDATA[数字本草 | 主页]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/15 - 21:39:26" eTime="2016/1/15 - 21:47:39" passed="0" failed="2" warnings="2" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="7" status="Failed" >
+<Disp><![CDATA[Action1 摘要]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[AutomaticTest 迭代 1 (行 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<DIter rID="T59" iterID="2" >
+<Action rID="T60">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Browser]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:47]]></Time>
+<TimeTick>1452865667</TimeTick>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA["数字本草 | 主页"  - 智能标识]]></Obj>
+<Details plainTxt="False" ><![CDATA[<P><span class="text">已调用智能标识机制。</span></P><P><SPAN class=text>原因: 对象不唯一(已找到 2 个对象)</SPAN></P>           <SPAN class=text><b>原始描述:</b></SPAN><br>micclass=Browser<br><P><FONT face=Verdana size=2><SPAN class=text><B>智能标识可选描述:</B></SPAN></FONT></P><FONT face=Verdana size=2><u>基本筛选属性(已找到 2 个对象) &nbsp;</FONT></u><br>
+micclass=Browser<br><br><FONT face=Verdana size=2><u>可选筛选属性</FONT></u><br>
+name=数字本草 | 主页<SPAN class=passed>(已使用</SPAN>，1 个匹配)</SPAN><br>title=数字本草 | 主页<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>openurl=https://123.150.11.173<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>opentitle=数字本草 | 主页<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>openedbytestingtool=-1<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>number of tabs=1<SPAN class=warning>(已忽略)<FONT color=#000000></FONT></SPAN><br>]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:47]]></Time>
+<TimeTick>1452865667</TimeTick>
+<NodeArgs eType="Replay" icon="6" nRep="195" Source="Action1" SourceLine="0" >
+<Disp><![CDATA["数字本草 | 主页"  - 智能标识]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA[数字本草 | 主页]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:47]]></Time>
+<TimeTick>1452865667</TimeTick>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[[注册].Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:47]]></Time>
+<TimeTick>1452865667</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="198" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[[注册].Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="197" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[数字本草 | 主页]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA[注册]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:52]]></Time>
+<TimeTick>1452865672</TimeTick>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[马上注册.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[2016/1/15 - 21:47:52]]></Time>
+<TimeTick>1452865672</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="202" Source="Action1" SourceLine="1" >
+<Disp><![CDATA[马上注册.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="201" Source="Action1" SourceLine="1" >
+<Disp><![CDATA[注册]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA[个人注册信息完善]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[2016/1/15 - 21:48:04]]></Time>
+<TimeTick>1452865684</TimeTick>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[userId.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["3自动化测试"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:48:04]]></Time>
+<TimeTick>1452865684</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="206" Source="Action1" SourceLine="3" >
+<Disp><![CDATA[userId.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T69">
+<Obj plainTxt="False" ><![CDATA[pwd.SetSecure]]></Obj>
+<Details plainTxt="False" ><![CDATA["5698a5e3afe68531f54a94fbfdf2967fecf2"]]></Details>
+<Time><![CDATA[2016/1/15 - 21:48:12]]></Time>
+<TimeTick>1452865692</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="208" Source="Action1" SourceLine="4" >
+<Disp><![CDATA[pwd.SetSecure]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[停止运行]]></Obj>
+<Details plainTxt="False" ><![CDATA[用户停止运行。]]></Details>
+<Time><![CDATA[2016/1/15 - 21:49:05]]></Time>
+<TimeTick>1452865745</TimeTick>
+<NodeArgs eType="General" icon="13" nRep="209" >
+<Disp><![CDATA[停止运行]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="7" nRep="205" Source="Action1" SourceLine="3" >
+<Disp><![CDATA[个人注册信息完善]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="5" nRep="194" Source="Action1" SourceLine="0" >
+<Disp><![CDATA[数字本草 | 主页]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/15 - 21:47:42" eTime="2016/1/15 - 21:49:05" passed="0" failed="0" warnings="0" ></Summary>
+<NodeArgs eType="StartAction" icon="4" nRep="192" >
+<Disp><![CDATA[Action1 摘要]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="191" >
+<Disp><![CDATA[AutomaticTest 迭代 2 (行 2)]]></Disp>
+</NodeArgs>
+</DIter>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA[停止运行]]></Obj>
+<Details plainTxt="False" ><![CDATA[用户停止运行。]]></Details>
+<Time><![CDATA[2016/1/15 - 21:49:05]]></Time>
+<TimeTick>1452865745</TimeTick>
+<NodeArgs eType="General" icon="14" nRep="212" >
+<Disp><![CDATA[停止运行]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="2016/1/15 - 21:39:23" eTime="2016/1/15 - 21:49:05" passed="0" failed="2" warnings="2" stopped="True" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[测试 AutomaticTest 摘要]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
